@@ -10,7 +10,9 @@ import com.example.demo.Service.MemberService;
 import com.example.demo.Service.RefreshTokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +37,7 @@ public class MemberApiController {
     private final RefreshTokenService refreshTokenService;
     private final RefreshTokenRepository refreshTokenRepository;
 
+
     MemberApiController(PasswordEncoder bCryptPasswordEncoder, MemberRepository memberRepository, MemberService memberService, JwtProvider jwtProvider, RefreshTokenService refreshTokenService, RefreshTokenRepository refreshTokenRepository){
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.memberRepository = memberRepository;
@@ -55,11 +58,11 @@ public class MemberApiController {
         return ApiResponse.success(memberResponseDtos);
     }
 
+    @Cacheable(value = "profile", key="#authentication.name", cacheManager = "cacheManager")
     @GetMapping("/profile")
-    public ApiResponse<MemberResponseDto> profile(HttpServletRequest request){
+    public ApiResponse<MemberResponseDto> profile(HttpServletRequest request, Authentication authentication){
         Member member = (Member) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         MemberResponseDto memberResponseDto = new MemberResponseDto(member.getEmail(), member.getRole());
-
         return ApiResponse.success(memberResponseDto);
     }
 

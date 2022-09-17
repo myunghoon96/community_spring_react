@@ -47,21 +47,25 @@ const headCells = [
     label: "제목",
   },
   {
-    id: "content",
-    label: "내용",
+    id: "view",
+    label: "조회 수",
   },
+  // {
+  //   id: "content",
+  //   label: "내용",
+  // },
   {
-    id: "member.email",
+    id: "email",
     label: "작성자",
   },
   {
     id: "createdDate",
     label: "작성일자",
   },
-  {
-    id: "modifiedDate",
-    label: "수정일자",
-  },
+  // {
+  //   id: "modifiedDate",
+  //   label: "수정일자",
+  // },
 ];
 
 function EnhancedTableHead(props) {
@@ -114,7 +118,7 @@ export default function BoardTable(props) {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(100);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const rows = props.rows;
 
   const handleRequestSort = (event, property) => {
@@ -162,12 +166,13 @@ export default function BoardTable(props) {
                     <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                       <TableCell padding="checkbox"></TableCell>
                       <TableCell component={Link} to={"/board/post/" + row.id}>
-                        {row.title.substring(0, 10)}
+                        {row.title.substring(0, 15)}
                       </TableCell>
-                      <TableCell>{row.content.substring(0, 10)}</TableCell>
-                      <TableCell>{row.member.email}</TableCell>
+                      {/* <TableCell>{row.content.substring(0, 10)}</TableCell> */}
+                      <TableCell>{row.view}</TableCell>
+                      <TableCell>{row.email}</TableCell>
                       <TableCell>{row.createdDate}</TableCell>
-                      <TableCell>{row.modifiedDate}</TableCell>
+                      {/* <TableCell>{row.modifiedDate}</TableCell> */}
                     </TableRow>
                   );
                 })}

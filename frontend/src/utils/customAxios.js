@@ -22,8 +22,8 @@ customAxios.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response.status === 401 || error.response.status === 406) {
       window.location.href = "/error";
-      return Promise.reject(error);
     }
+    return Promise.reject(error);
   }
 );
 export default customAxios;

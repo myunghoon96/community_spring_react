@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class MemberResponseDto {
+public class MemberResponseDto implements Serializable {
     private Long id;
     @NotBlank(message = "이메일은 필수 값 입니다")
     @Email(message = "올바른 이메일을 입력하세요")

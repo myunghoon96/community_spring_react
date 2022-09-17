@@ -90,14 +90,14 @@ export default function PostDetail() {
                 value={items.view || 0}
               />
             )}
-            {items && items.member && items.member.email && (
+            {items && items.email && (
               <TextField
                 // fullWidth
                 sx={{ width: "25%" }}
                 margin="normal"
                 id="email"
                 label="작성자"
-                value={items["member"].email || ""}
+                value={items.email || ""}
               />
             )}
             <TextField

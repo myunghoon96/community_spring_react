@@ -2,6 +2,7 @@ package com.example.demo.Entity;
 
 import com.example.demo.Constant.Role;
 import com.example.demo.Security.CustomAuthorityDeserializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,8 +26,9 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @Entity
-public class Member extends BaseTimeEntity implements UserDetails {
+public class Member extends BaseTimeEntity implements UserDetails, Serializable {
 
+    @JsonIgnore
     @Id
     @GeneratedValue
     private Long id;
@@ -39,6 +42,7 @@ public class Member extends BaseTimeEntity implements UserDetails {
     @NotBlank(message = "비밀번호는 필수 값 입니다") @NotNull
     private String password;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Enumerated(EnumType.STRING)
     @NotNull
     private Role role;
@@ -63,7 +67,8 @@ public class Member extends BaseTimeEntity implements UserDetails {
         return this;
     }
 
-    @JsonDeserialize(using = CustomAuthorityDeserializer.class)
+    @JsonIgnore
+//    @JsonDeserialize(using = CustomAuthorityDeserializer.class)
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();

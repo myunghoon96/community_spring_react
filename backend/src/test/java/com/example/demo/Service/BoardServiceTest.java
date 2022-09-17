@@ -63,7 +63,7 @@ class BoardServiceTest {
         Board board = new Board(member,"title2", "content2");
         Long boardId = boardService.addBoard(board);
 
-        boardService.updateView(boardId);
+        boardService.updateView(boardId, 1);
         Optional<Board> findBoard = boardRepository.findById(boardId);
 
         Assertions.assertEquals(1, findBoard.get().getView());
@@ -88,7 +88,7 @@ class BoardServiceTest {
         //when
         for (int i = 0; i < numberOfThreads; i++) {
             executorService.execute(() -> {
-                boardService.updateView(boardId);
+                boardService.updateView(boardId, 1);
                 countDownLatch.countDown();
             }
             );

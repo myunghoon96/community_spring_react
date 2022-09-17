@@ -3,10 +3,12 @@ package com.example.demo.Dto;
 import com.example.demo.Entity.Board;
 import com.example.demo.Entity.Member;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
@@ -16,7 +18,9 @@ import java.time.LocalDateTime;
 public class BoardDto {
 
     private Long id;
-    @ManyToOne
+
+    private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Member member;
     @NotBlank(message = "제목은 필수 값 입니다")
     private String title;
@@ -37,11 +41,24 @@ public class BoardDto {
         this.content = board.getContent();
         this.createdDate = board.getCreatedDate();
         this.modifiedDate = board.getModifiedDate();
-        this.view = board.getView();
+//        this.view = board.getView();
     }
 
     public BoardDto(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public BoardDto(String email, Board board) {
+        this.email = email;
+        this.id = board.getId();
+        this.title = board.getTitle();
+        this.content = board.getContent();
+        this.createdDate = board.getCreatedDate();
+        this.modifiedDate = board.getModifiedDate();
+    }
+
+    public void updateViewFromRedis(int view){
+        this.view = view;
     }
 }

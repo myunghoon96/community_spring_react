@@ -4,7 +4,7 @@ import com.example.demo.Entity.Board;
 import com.example.demo.Entity.Comment;
 import com.example.demo.Entity.Member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,9 +19,11 @@ public class CommentDto {
     private Long id;
     @NotBlank(message = "댓글 내용은 필수 값 입니다")
     private String content;
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Member member;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
+    @JsonIgnore
     private Board board;
 
     public CommentDto(Comment comment){

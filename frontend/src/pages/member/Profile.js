@@ -14,7 +14,7 @@ function Profile() {
 
   useEffect(() => {
     customAxios
-      .get("member/profile")
+      .get("/member/profile")
       .then((response) => setItems(response.data.data))
       .catch((error) => console.log(error));
   }, []);

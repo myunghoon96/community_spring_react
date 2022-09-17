@@ -1,8 +1,11 @@
 package com.example.demo.Service;
 
 import com.example.demo.Entity.Board;
+import com.example.demo.Entity.Member;
 import com.example.demo.Repository.BoardRepository;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 @Transactional
@@ -19,7 +22,11 @@ public class BoardService {
         return board.getId();
     }
 
-    public int updateView(Long boardId){
-        return boardRepository.updateView(boardId);
+    public int updateView(Long boardId, int view){
+        return boardRepository.updateView(boardId, view);
+    }
+
+    public boolean checkTitleDuplication(String title) {
+        return boardRepository.existsByTitle(title);
     }
 }

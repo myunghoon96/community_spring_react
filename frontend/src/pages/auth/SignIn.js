@@ -54,6 +54,10 @@ export default function SignIn() {
         withCredentials: true,
       })
       .then((response) => {
+        console.log(response.data.success);
+        if (response.data.success === true) {
+          console.log("YAS");
+        }
         setIsLogin(true);
         setLoginUser(data.get("email"));
         navigate("/");

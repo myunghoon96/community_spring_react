@@ -1,5 +1,7 @@
 package com.example.demo.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,10 +25,12 @@ public class Comment extends BaseTimeEntity{
     @Column(columnDefinition = "text")
     private String content;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
     @NotNull
     private Member member;
 
+    @JsonIgnore
     @ManyToOne
     @NotNull
     private Board board;

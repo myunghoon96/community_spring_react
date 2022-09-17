@@ -22,7 +22,6 @@ function MainFeaturedPost(props) {
         backgroundImage: `url(${post.image})`,
       }}
     >
-      {/* Increase the priority of the hero background image */}
       {
         <img
           style={{ display: "none" }}
@@ -50,14 +49,14 @@ function MainFeaturedPost(props) {
             }}
           >
             <Typography
-              component="h1"
-              variant="h3"
+              component="h3"
+              variant="h4"
               color="inherit"
               gutterBottom
             >
               {post.title}
             </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
+            <Typography variant="h6" color="inherit" paragraph>
               {post.description}
             </Typography>
             <Link variant="subtitle1" href="#">
