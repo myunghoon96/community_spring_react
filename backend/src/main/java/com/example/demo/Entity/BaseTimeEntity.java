@@ -1,5 +1,7 @@
 package com.example.demo.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -16,9 +18,11 @@ public abstract class BaseTimeEntity {
 
     @CreatedDate
     @Column(updatable = false)
+    @JsonIgnore
     private LocalDateTime createdDate;
 
     @LastModifiedDate
+    @JsonIgnore
     private LocalDateTime modifiedDate;
 
 }

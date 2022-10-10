@@ -23,7 +23,7 @@ public class CommentDto {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Member member;
 
-    @JsonIgnore
+//    @JsonIgnore
     private Board board;
 
     public CommentDto(Comment comment){

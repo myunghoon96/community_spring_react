@@ -79,6 +79,7 @@ public class BoardApiController {
 //            redisService.addViewByBoardId(boardId);
 //            findBoard = boardRepository.findById(boardId).get();
 //        }
+
         redisService.increaseViewByBoardTitle(findBoard.getTitle());
         int view = redisService.getViewByBoardTitle(findBoard.getTitle());
 
@@ -93,7 +94,7 @@ public class BoardApiController {
             Member member = (Member) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
             List<Board> boards = boardRepository.findByMember(member);
-            List<BoardDto> boardDtos = boards.stream().map(b-> new BoardDto(b.getMember().getEmail(), b)).collect(Collectors.toList());
+            List<BoardDto> boardDtos = boards.stream().map(b-> new BoardDto(b.getMember().getEmail(), b, redisService.getViewByBoardTitle(b.getTitle()))).collect(Collectors.toList());
             return ApiResponse.success(boardDtos);
         } catch (Exception e){
             throw new RuntimeException("현재 유저 정보를 확인할 수 없습니다.");

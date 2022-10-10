@@ -58,6 +58,17 @@ public class BoardDto {
         this.modifiedDate = board.getModifiedDate();
     }
 
+    public BoardDto(String email, Board board, int view) {
+        this.email = email;
+        this.id = board.getId();
+        this.title = board.getTitle();
+        this.content = board.getContent();
+        this.createdDate = board.getCreatedDate();
+        this.modifiedDate = board.getModifiedDate();
+        this.view = view;
+    }
+
+
     public void updateViewFromRedis(int view){
         this.view = view;
     }

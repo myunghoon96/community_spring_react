@@ -75,7 +75,7 @@ public class RedisService {
         }
     }
 
-    //    public void increaseViewByBoardId(Long boardId){
+//    public void increaseViewByBoardId(Long boardId){
 //        String key = "BoardView::" + boardId;
 //        ValueOperations valueOperations = redisTemplate.opsForValue();
 //        if (redisTemplate.hasKey(key)) {
