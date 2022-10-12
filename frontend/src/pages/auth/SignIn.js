@@ -10,10 +10,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useRoutes } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { LoginState, LoginUser } from "../../states/LoginState";
 import customAxios from "../../utils/customAxios";
+import * as kakao from "../../constants/kakao";
 
 function Copyright(props) {
   return (
@@ -123,6 +124,25 @@ export default function SignIn() {
             >
               로그인
             </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              href={kakao.KAKAO_AUTH_URL}
+              // style={{ backgroundColor: "#ffeb3b" }}
+              sx={{
+                color: "black",
+                backgroundColor: "yellow",
+                borderColor: "yellow",
+              }}
+            >
+              {/* <img
+                style={{ width: "100%" }}
+                src="kakao_login_medium_wide.png"
+              ></img> */}
+              카카오 로그인
+            </Button>
+
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/signup" variant="body2">

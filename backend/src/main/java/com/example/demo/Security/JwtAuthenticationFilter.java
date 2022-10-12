@@ -23,8 +23,13 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
                          ServletResponse response,
                          FilterChain filterChain) throws IOException, ServletException {
 
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpServeletResponse = (HttpServletResponse) response;
-        httpServeletResponse.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:3000");
+//        httpServeletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        httpServeletResponse.setHeader("Access-Control-Allow-Origin", "https://hoon.ml");
+//        String origin = httpRequest.getHeader("origin");
+
+//        httpServeletResponse.setHeader("Access-Control-Allow-Origin", "*");
         httpServeletResponse.setHeader("Access-Control-Allow-Credentials",  "true");
 
         String token = jwtProvider.resolveAcessToken((HttpServletRequest) request);

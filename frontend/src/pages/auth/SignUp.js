@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import customAxios from "../../utils/customAxios";
+import * as kakao from "../../constants/kakao";
 
 function Copyright(props) {
   return (
@@ -109,6 +110,24 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
             >
               완료
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              href={kakao.KAKAO_AUTH_URL}
+              // style={{ backgroundColor: "#ffeb3b" }}
+              sx={{
+                color: "black",
+                backgroundColor: "yellow",
+                borderColor: "yellow",
+              }}
+            >
+              {/* <img
+                style={{ width: "100%" }}
+                src="kakao_login_medium_wide.png"
+              ></img> */}
+              카카오 로그인
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>

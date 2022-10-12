@@ -1,5 +1,6 @@
 package com.example.demo.Api;
 
+import com.example.demo.Constant.Role;
 import com.example.demo.Security.JwtProvider;
 import com.example.demo.Dto.MemberDto;
 import com.example.demo.Dto.MemberResponseDto;
@@ -88,6 +89,21 @@ public class MemberApiController {
         String refreshToken = jwtProvider.createRefreshToken(String.valueOf(loginMemberDto.getEmail()), loginMemberDto.getRole());
         response.addCookie(createCookie("refreshToken", refreshToken, 3*3600));
         return ApiResponse.success(null);
+    }
+
+
+    @PostMapping("/oauth/kakao")
+    public ApiResponse<String> loginByKakao(@RequestBody String token, HttpServletResponse response) throws Exception {
+        String kakaoEmail = memberService.getEmailByKakaoToken(token);
+        log.info("loginByKakao kakaoEmail {}", kakaoEmail);
+
+        String accessToken = jwtProvider.createAccessToken(kakaoEmail, Role.USER);
+        response.addCookie(createCookie("accessToken", accessToken, 3600));
+
+        String refreshToken = jwtProvider.createRefreshToken(kakaoEmail, Role.USER);
+        response.addCookie(createCookie("refreshToken", refreshToken, 3*3600));
+
+        return ApiResponse.success(kakaoEmail);
     }
 
     @PostMapping("/refresh")

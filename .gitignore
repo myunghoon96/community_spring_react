@@ -1,7 +1,9 @@
+/frontend/src/constants/kakao.js
+
 /backend/HELP.md
 /backend/.gradle
 /backend/build/*
-!/backend/build/libs
+# !/backend/build/libs
 /backend/!gradle/wrapper/gradle-wrapper.jar
 /backend/!**/src/main/**/build/
 /backend/!**/src/test/**/build/
@@ -49,7 +51,7 @@
 /frontend/coverage
 
 # production
-# /frontend/build
+/frontend/build
 
 # misc
 /frontend/.DS_Store
