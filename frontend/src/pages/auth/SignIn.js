@@ -84,11 +84,10 @@ export default function SignIn() {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography>로그인</Typography>
-          <Typography color="#9e9e9e">hoon@gmail.com, password</Typography>
-          <Typography color="#9e9e9e">tom@gmail.com, password</Typography>
-          <Typography color="#9e9e9e">david@gmail.com, password</Typography>
-
+          <Typography component="h1" variant="h5">
+            로그인
+          </Typography>
+          <Typography color="#9e9e9e">hoon@test.com, test1234!</Typography>
           <Box
             component="form"
             onSubmit={handleSubmit}

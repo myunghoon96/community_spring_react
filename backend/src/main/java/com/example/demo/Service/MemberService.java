@@ -33,14 +33,12 @@ public class MemberService{
 
     @PostConstruct
     private void insertSampleDatas(){
-        Member member1 = new Member("hoon" + "@gmail.com", passwordEncoder.encode("password"));
-        memberRepository.save(member1);
-
-        Member member2 = new Member("tom" + "@gmail.com", passwordEncoder.encode("password"));
-        memberRepository.save(member2);
-
-        Member member3 = new Member("david" + "@gmail.com", passwordEncoder.encode("password"));
-        memberRepository.save(member3);
+        for(int i=3; i > 0 ; i -- ){
+            Member member = new Member("guest" + i + "@test.com", passwordEncoder.encode("test1234!"));
+            memberRepository.save(member);
+        }
+        Member member = new Member("hoon" + "@test.com", passwordEncoder.encode("test1234!"));
+        memberRepository.save(member);
     }
 
     public Long addMember(Member member){

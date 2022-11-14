@@ -114,7 +114,7 @@ EnhancedTableHead.propTypes = {
 
 export default function BoardTable(props) {
   const [order, setOrder] = React.useState("desc");
-  const [orderBy, setOrderBy] = React.useState("modifiedDate");
+  const [orderBy, setOrderBy] = React.useState("createdDate");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);

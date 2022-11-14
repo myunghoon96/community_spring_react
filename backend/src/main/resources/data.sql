@@ -1,0 +1,23 @@
+insert into member (id, email, password, role, created_date, modified_date) values(10000, 'test@test.com', 'test1234!', "USER", '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+
+insert into board (id, title, content, member_id, created_date, modified_date) values(10000, '게시글 제목0', '게시글 내용0', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10001, '게시글 제목1', '게시글 내용1', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10002, '게시글 제목2', '게시글 내용2', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10003, '게시글 제목3', '게시글 내용3', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10004, '게시글 제목4', '게시글 내용4', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10005, '게시글 제목5', '게시글 내용5', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10006, '게시글 제목6', '게시글 내용6', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10007, '게시글 제목7', '게시글 내용7', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10008, '게시글 제목8', '게시글 내용8', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10009, '게시글 제목9', '게시글 내용9', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10010, '게시글 제목10', '게시글 내용10', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10011, '게시글 제목11', '게시글 내용11', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10012, '게시글 제목12', '게시글 내용12', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10013, '게시글 제목13', '게시글 내용13', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10014, '게시글 제목14', '게시글 내용14', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10015, '게시글 제목15', '게시글 내용15', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10016, '게시글 제목16', '게시글 내용16', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10017, '게시글 제목17', '게시글 내용17', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10018, '게시글 제목18', '게시글 내용18', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10019, '게시글 제목19', '게시글 내용19', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');
+insert into board (id, title, content, member_id, created_date, modified_date) values(10020, '게시글 제목20', '게시글 내용20', 10000, '2022-11-01 00:00:00.000000', '2022-11-01 00:00:00.000000');

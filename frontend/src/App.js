@@ -17,6 +17,7 @@ import { Navigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { LoginState } from "./states/LoginState";
 import KakaoRedirect from "./pages/auth/KakaoRedirect";
+import ImageBoard from "./pages/board/ImageBoard";
 
 function App() {
   const [isLogin, setIsLogin] = useRecoilState(LoginState);
@@ -60,6 +61,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <PostDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/images"
+            element={
+              <ProtectedRoute>
+                <ImageBoard />
               </ProtectedRoute>
             }
           />

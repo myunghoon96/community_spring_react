@@ -14,7 +14,6 @@ const theme = createTheme();
 
 export default function Post() {
   const navigate = useNavigate();
-
   const [errorMsg, setErrorMsg] = React.useState(null);
 
   const handleSubmit = (event) => {

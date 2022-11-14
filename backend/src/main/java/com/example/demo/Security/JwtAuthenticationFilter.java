@@ -25,12 +25,8 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpServeletResponse = (HttpServletResponse) response;
-//        httpServeletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-        httpServeletResponse.setHeader("Access-Control-Allow-Origin", "https://hoon.ml");
-//        String origin = httpRequest.getHeader("origin");
-
-//        httpServeletResponse.setHeader("Access-Control-Allow-Origin", "*");
-        httpServeletResponse.setHeader("Access-Control-Allow-Credentials",  "true");
+//        httpServeletResponse.setHeader("Access-Control-Allow-Origin", "https://hoon.ml");
+//        httpServeletResponse.setHeader("Access-Control-Allow-Credentials",  "true");
 
         String token = jwtProvider.resolveAcessToken((HttpServletRequest) request);
         if (token != null && jwtProvider.validationAccessToken(request, token)) {

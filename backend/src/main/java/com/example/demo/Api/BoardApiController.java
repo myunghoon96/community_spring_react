@@ -8,12 +8,19 @@ import com.example.demo.Redis.RedisService;
 import com.example.demo.Repository.BoardRepository;
 import com.example.demo.Repository.MemberRepository;
 import com.example.demo.Service.BoardService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -44,6 +51,10 @@ public class BoardApiController {
 
         for (BoardDto b : boardDtos){
             int view = redisService.getViewByBoardTitle(b.getTitle());
+            if (view == -1){
+                view = b.getView();
+                redisService.addInToRankList(new RankDto(b.getTitle(), (double) b.getView()));
+            }
             b.updateViewFromRedis(view);
         }
 
@@ -64,8 +75,6 @@ public class BoardApiController {
         } catch (Exception e){
             throw new RuntimeException(e.getMessage());
         }
-
-
     }
 
 

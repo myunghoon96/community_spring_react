@@ -51,7 +51,7 @@ public class MemberApiController {
 
     @GetMapping
     public ApiResponse<List<MemberResponseDto>> memberList(){
-        List<Member> members = memberRepository.findAll();
+        List<Member> members = memberRepository.findAllByOrderByCreatedDateDesc();
         List<MemberResponseDto> memberResponseDtos = members.stream()
                 .map(m-> new MemberResponseDto(m.getId(), m.getEmail()))
                 .collect(Collectors.toList());

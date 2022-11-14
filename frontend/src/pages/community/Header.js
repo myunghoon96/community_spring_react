@@ -16,8 +16,8 @@ function Header(props) {
   const title = "Hoon";
   const sections = [
     { title: "회원 목록", url: "/member" },
-    { title: "게시판", url: "/board" },
-    { title: "게시글 작성", url: "/board/post" },
+    { title: "글 게시판", url: "/board" },
+    { title: "이미지 게시판", url: "/images" },
   ];
 
   const [isLogin, setIsLogin] = useRecoilState(LoginState);
