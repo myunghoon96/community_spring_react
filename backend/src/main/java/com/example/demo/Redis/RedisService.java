@@ -58,22 +58,33 @@ public class RedisService {
         if (value != null){
             return value.intValue();
         }
-
         return -1;
     }
 
-//    @Scheduled(cron = "0/5 * * * * *")
     @Scheduled(cron = "0 0 0/1 * * *")
     public void InsertViewToDB(){
-        Set<String> redisKeys = redisTemplate.keys("BoardView*");
-        Iterator<String> it = redisKeys.iterator();
-        while (it.hasNext()){
-            String key = it.next();
-            Long boardId = Long.valueOf(key.split("::")[1]);
-            int view = Integer.parseInt(redisTemplate.opsForValue().get(key));
-            boardRepository.updateView(boardId, view);
+        log.info("Scheduled InsertViewToDB");
+        String key = "rank";
+        ZSetOperations<String, String> zSetOperations = redisTemplate.opsForZSet();
+        Set<ZSetOperations.TypedTuple<String>> rankTypedTuples = zSetOperations.reverseRangeWithScores(key, 0, 2);
+
+        for (ZSetOperations.TypedTuple<String> rankTypedTuple : rankTypedTuples){
+            System.out.println(rankTypedTuple);
+            boardRepository.updateViewByTitle(rankTypedTuple.getValue(), rankTypedTuple.getScore().intValue());
         }
     }
+
+//    @Scheduled(cron = "10 0 * * * *")
+//    public void InsertViewToDB(){
+//        Set<String> redisKeys = redisTemplate.keys("BoardView*");
+//        Iterator<String> it = redisKeys.iterator();
+//        while (it.hasNext()){
+//            String key = it.next();
+//            Long boardId = Long.valueOf(key.split("::")[1]);
+//            int view = Integer.parseInt(redisTemplate.opsForValue().get(key));
+//            boardRepository.updateView(boardId, view);
+//        }
+//    }
 
 //    public void increaseViewByBoardId(Long boardId){
 //        String key = "BoardView::" + boardId;

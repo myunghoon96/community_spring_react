@@ -27,4 +27,10 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     int findViewByBoardId(@Param("id") Long boardId);
 
     boolean existsByTitle(String title);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE Board b SET b.view = :view WHERE b.title = :title")
+    int updateViewByTitle(@Param("title") String title, @Param("view") int view);
+
 }
