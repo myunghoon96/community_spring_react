@@ -2,6 +2,8 @@ package com.example.demo.Repository;
 
 import com.example.demo.Entity.Board;
 import com.example.demo.Entity.Member;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +17,8 @@ import java.util.Optional;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
     Optional<Board> findById(Long id);
-    List<Board> findAll();
+//    List<Board> findAll();
+    Page<Board> findAll(Pageable pageable);
     List<Board> findByMember(Member member);
 
     @Transactional

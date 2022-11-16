@@ -43,7 +43,7 @@ public class ImageApiController {
 
     @PostMapping
     public ApiResponse<Null> addImage(MultipartFile[] multipartFiles) throws Exception{
-//        String IMAGE_UPLOAD_PATH = "C:\\Users\\NKNK\\Desktop\\demo\\frontend\\public\\image\\";
+//        String IMAGE_UPLOAD_PATH = "C:\\Users\\NKNK\\Desktop\\demo\\frontend\\public\\";
         String IMAGE_UPLOAD_PATH = "/home/ubuntu/community_spring_react/frontend/build/";
 
         try {

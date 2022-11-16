@@ -1,6 +1,8 @@
 package com.example.demo.Api;
 
 import com.example.demo.Dto.BoardDto;
+import com.example.demo.Dto.PageDto;
+import com.example.demo.Dto.PageInfo;
 import com.example.demo.Dto.RankDto;
 import com.example.demo.Entity.Board;
 import com.example.demo.Entity.Member;
@@ -11,11 +13,16 @@ import com.example.demo.Service.BoardService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Positive;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -45,8 +52,11 @@ public class BoardApiController {
     }
 
     @GetMapping
-    public ApiResponse<List<BoardDto>> boardList(){
-        List<Board> boards = boardRepository.findAll();
+    public ApiResponse<PageDto<List<BoardDto>>> boardList(@Positive @RequestParam int page, @Positive @RequestParam int size){
+        PageRequest pageRequest = PageRequest.of(page-1, size);
+        Page<Board> pageBoard= boardRepository.findAll(pageRequest);
+
+        List<Board> boards = pageBoard.getContent();
         List<BoardDto> boardDtos = boards.stream().map(b-> new BoardDto(b.getMember().getEmail(), b)).collect(Collectors.toList());
 
         for (BoardDto b : boardDtos){
@@ -58,8 +68,26 @@ public class BoardApiController {
             b.updateViewFromRedis(view);
         }
 
-        return ApiResponse.success(boardDtos);
+        PageDto<List<BoardDto>> pageDto = new PageDto<>(boardDtos, new PageInfo(page, size, pageBoard.getNumberOfElements(), pageBoard.getTotalPages()));
+        return ApiResponse.success(pageDto);
     }
+
+//    @GetMapping
+//    public ApiResponse<List<BoardDto>> boardList(){
+//        List<Board> boards = boardRepository.findAll();
+//        List<BoardDto> boardDtos = boards.stream().map(b-> new BoardDto(b.getMember().getEmail(), b)).collect(Collectors.toList());
+//
+//        for (BoardDto b : boardDtos){
+//            int view = redisService.getViewByBoardTitle(b.getTitle());
+//            if (view == -1){
+//                view = b.getView();
+//                redisService.addInToRankList(new RankDto(b.getTitle(), (double) b.getView()));
+//            }
+//            b.updateViewFromRedis(view);
+//        }
+//
+//        return ApiResponse.success(boardDtos);
+//    }
 
     @PostMapping
     public ApiResponse<Long> addBoard(@RequestBody @Valid BoardDto boardDto) throws Exception{
