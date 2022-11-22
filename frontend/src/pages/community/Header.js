@@ -18,6 +18,7 @@ function Header(props) {
     { title: "회원 목록", url: "/member" },
     { title: "글 게시판", url: "/board" },
     { title: "이미지 게시판", url: "/images" },
+    { title: "채팅방", url: "/chat" },
   ];
 
   const [isLogin, setIsLogin] = useRecoilState(LoginState);

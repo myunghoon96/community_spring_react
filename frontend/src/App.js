@@ -18,6 +18,7 @@ import { useRecoilState } from "recoil";
 import { LoginState } from "./states/LoginState";
 import KakaoRedirect from "./pages/auth/KakaoRedirect";
 import ImageBoard from "./pages/board/ImageBoard";
+import Chat from "./pages/chat/Chat";
 
 function App() {
   const [isLogin, setIsLogin] = useRecoilState(LoginState);
@@ -39,6 +40,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/error" element={<Error />} />
           <Route path="/oauth/kakao" element={<KakaoRedirect />} />
+          <Route path="/chat" element={<Chat />} />
 
           <Route
             path="/board"
